@@ -1,13 +1,12 @@
 import Foundation
 import UIKit
 
-class EntryViewModel {
+public class EntryViewModel: Codable {
     
     var hasError = false
     var errorMessage: String? = nil
 
-    let title: String
-    let author: String
+    var thumbnail = UIImage(named: "thumbnail-placeholder")!
     
     var age: String {
         
@@ -22,13 +21,16 @@ class EntryViewModel {
         }
     }
     
-    var thumbnail: UIImage
-    let commentsCount: String
-    let url: URL?
     
-    private let creation: Date?
-    private let thumbnailURL: URL?
     private var thumbnailFetched = false
+    
+    let title: String
+    let author: String
+    let commentsCountNumber: Int
+    let url: URL?
+    let creation: Date?
+    let thumbnailURL: URL?
+
 
     init(withModel model: EntryModel) {
         
@@ -41,8 +43,7 @@ class EntryViewModel {
         self.title = model.title ?? "Untitled"
         self.author = model.author ?? "Anonymous"
         self.thumbnailURL = model.thumbnailURL
-        self.thumbnail = UIImage(named: "thumbnail-placeholder")!
-        self.commentsCount = " \(model.commentsCount ?? 0) " // Leave space for the rounded corner. I know, not cool, but does the trick.
+        self.commentsCountNumber = model.commentsCount ?? 0
         self.creation = model.creation
         self.url = model.url
 
@@ -53,6 +54,41 @@ class EntryViewModel {
             
             markAsMissingRequiredField()
         }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case author
+        case thumbnailURL
+        case commentsCountNumber
+        case creation
+        case url
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        title = try container.decode(String.self, forKey: .title)
+        author = try container.decode(String.self, forKey: .author)
+        thumbnailURL = try container.decodeIfPresent(URL.self, forKey: .thumbnailURL)
+        commentsCountNumber = try container.decodeIfPresent(Int.self, forKey: .commentsCountNumber) ?? 0
+        creation = try container.decodeIfPresent(Date.self, forKey: .creation)
+        url = try container.decodeIfPresent(URL.self, forKey: .url)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(title, forKey: .title)
+        try container.encode(author, forKey: .author)
+        try container.encode(thumbnailURL, forKey: .thumbnailURL)
+        try container.encode(commentsCountNumber, forKey: .commentsCountNumber)
+        try container.encode(creation, forKey: .creation)
+        try container.encode(url, forKey: .url)
+    }
+    
+    func commentsCount() -> String {
+        return " \(commentsCountNumber) " // Leave space for the rounded corner. I know, not cool, but does the trick.
     }
     
     func loadThumbnail(withCompletion completion: @escaping () -> ()) {

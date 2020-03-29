@@ -1,14 +1,12 @@
 import Foundation
 import UIKit
 
-class TopEntriesViewController: UITableViewController {
+class FavsEntriesViewController: UITableViewController {
 
     static let showImageSegueIdentifier = "showImageSegue"
-    let viewModel = TopEntriesViewModel(withClient: RedditClient())
+    let viewModel = FavouritesEntriesViewModel(with: FavouritesEntriesUserDefaultsStorage.shared)
     let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let errorLabel = UILabel()
-    let tableFooterView = UIView()
-    let moreButton = UIButton(type: .system)
     var entryToDisplay: EntryViewModel?
 
     override func viewDidLoad() {
@@ -16,6 +14,11 @@ class TopEntriesViewController: UITableViewController {
         super.viewDidLoad()
         
         self.configureViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.loadEntries()
     }
 
@@ -32,14 +35,12 @@ class TopEntriesViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == TopEntriesViewController.showImageSegueIdentifier {
+        if segue.identifier == FavsEntriesViewController.showImageSegueIdentifier {
             
             if let urlViewController = segue.destination as? URLViewController {
                 urlViewController.delegate = self
-                if let entry = self.entryToDisplay {
-                    urlViewController.isFav = FavouritesEntriesUserDefaultsStorage.shared.contains(entry: entry)
-                    urlViewController.entry = entry
-                }
+                urlViewController.isFav = true
+                urlViewController.entry = self.entryToDisplay
             }
         }
     }
@@ -53,12 +54,6 @@ class TopEntriesViewController: UITableViewController {
     @objc func dismissErrorToolbar() {
         
         self.navigationController?.setToolbarHidden(true, animated: true)
-    }
-    
-    @objc func moreButtonTapped() {
-        
-        self.moreButton.isEnabled = false
-        self.loadEntries()
     }
     
     private func loadEntries() {
@@ -81,15 +76,7 @@ class TopEntriesViewController: UITableViewController {
             
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.estimatedRowHeight = 110.0
-
-            self.tableFooterView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80)
-            self.tableFooterView.addSubview(self.moreButton)
             
-            self.moreButton.frame = self.tableFooterView.bounds
-            self.moreButton.setTitle("More...", for: [])
-            self.moreButton.setTitle("Loading...", for: .disabled)
-            self.moreButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            self.moreButton.addTarget(self, action: #selector(TopEntriesViewController.moreButtonTapped), for: .touchUpInside)
         }
         
         func configureToolbar() {
@@ -122,9 +109,6 @@ class TopEntriesViewController: UITableViewController {
         self.activityIndicatorView.stopAnimating()
         self.tableView.reloadData()
         
-        self.tableView.tableFooterView = self.tableFooterView
-        self.moreButton.isEnabled = true
-        
         if self.viewModel.hasError {
 
             self.errorLabel.text = self.viewModel.errorMessage
@@ -133,7 +117,7 @@ class TopEntriesViewController: UITableViewController {
     }
 }
 
-extension TopEntriesViewController { // UITableViewDataSource
+extension FavsEntriesViewController { // UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -151,7 +135,7 @@ extension TopEntriesViewController { // UITableViewDataSource
     }
 }
 
-extension TopEntriesViewController: EntryTableViewCellDelegate {
+extension FavsEntriesViewController: EntryTableViewCellDelegate {
  
     func presentEntry(withEntry entry: EntryViewModel) {
         
@@ -160,7 +144,8 @@ extension TopEntriesViewController: EntryTableViewCellDelegate {
     }
 }
 
-extension TopEntriesViewController: URLViewControllerDelegate {
+
+extension FavsEntriesViewController: URLViewControllerDelegate {
     
     func addToFavorites(entry: EntryViewModel) -> Bool {
         do {
