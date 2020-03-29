@@ -12,9 +12,8 @@ import XCTest
 class FavouritesEntriesViewModelTests: XCTestCase {
 
     func testPersistAndRetrieve() {
-        
-        
-        let storage: FavouritesEntriesStorageProtocol = FavouritesEntriesUserDefaultsStorage()
+                
+        let storage: FavouritesEntriesStorageProtocol = FavouritesEntriesUserDefaultsStorage.shared
         
         let favsEntriesViewModel = FavouritesEntriesViewModel(with: storage)
         
@@ -39,14 +38,14 @@ class FavouritesEntriesViewModelTests: XCTestCase {
         
         // create test entry
         let entryModel = EntryModel(withDictionary: dictionary)
-        let testEntry = FavouriteEntryViewModel(withModel: entryModel)
+        let testEntry = EntryViewModel(withModel: entryModel)
         
         // empty storage
         try? storage.removeAll()
         
         do {
             // persist test list
-            try storage.persist(list: [testEntry])
+            try storage.add(entry: testEntry)
         } catch let error {
             XCTFail("Cannot persist entries. \(error.localizedDescription)")
         }

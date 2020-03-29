@@ -297,7 +297,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="YdA-jl-Bs3"/>
                     <connections>
-                        <segue destination="aCN-S2-Zc5" kind="show" id="Xhh-Ch-L6z"/>
+                        <segue destination="aCN-S2-Zc5" kind="show" identifier="showImageSegue" id="Xhh-Ch-L6z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0v-uK-fXH" userLabel="First Responder" sceneMemberID="firstResponder"/>

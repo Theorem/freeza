@@ -9,7 +9,7 @@ class TopEntriesViewController: UITableViewController {
     let errorLabel = UILabel()
     let tableFooterView = UIView()
     let moreButton = UIButton(type: .system)
-    var urlToDisplay: URL?
+    var entryToDisplay: EntryViewModel?
 
     override func viewDidLoad() {
         
@@ -35,8 +35,11 @@ class TopEntriesViewController: UITableViewController {
         if segue.identifier == TopEntriesViewController.showImageSegueIdentifier {
             
             if let urlViewController = segue.destination as? URLViewController {
-                
-                urlViewController.url = self.urlToDisplay
+                urlViewController.delegate = self
+                if let entry = self.entryToDisplay {
+                    urlViewController.isFav = FavouritesEntriesUserDefaultsStorage.shared.contains(entry: entry)
+                    urlViewController.entry = entry
+                }
             }
         }
     }
@@ -150,9 +153,31 @@ extension TopEntriesViewController { // UITableViewDataSource
 
 extension TopEntriesViewController: EntryTableViewCellDelegate {
  
-    func presentImage(withURL url: URL) {
+    func presentEntry(withEntry entry: EntryViewModel) {
         
-        self.urlToDisplay = url
+        self.entryToDisplay = entry
         self.performSegue(withIdentifier: TopEntriesViewController.showImageSegueIdentifier, sender: self)
     }
+}
+
+extension TopEntriesViewController: URLViewControllerDelegate {
+    
+    func addToFavorites(entry: EntryViewModel) -> Bool {
+        do {
+            try FavouritesEntriesUserDefaultsStorage.shared.add(entry: entry)
+            return true
+        } catch _ {
+            return false
+        }
+    }
+    
+    func removeFromFavorites(entry: EntryViewModel) -> Bool {
+        do {
+            try FavouritesEntriesUserDefaultsStorage.shared.remove(entry: entry)
+            return true
+        } catch _ {
+            return false
+        }
+    }
+    
 }

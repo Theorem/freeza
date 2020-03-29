@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class EntryViewModel: Codable {
+public class EntryViewModel: Codable {
     
     var hasError = false
     var errorMessage: String? = nil
@@ -65,15 +65,26 @@ class EntryViewModel: Codable {
         case url
     }
     
-    required init(from decoder:Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        title = try values.decode(String.self, forKey: .title)
-        author = try values.decode(String.self, forKey: .author)
-        thumbnailURL = try values.decodeIfPresent(URL.self, forKey: .thumbnailURL)
-        commentsCountNumber = try values.decodeIfPresent(Int.self, forKey: .commentsCountNumber) ?? 0
-        creation = try values.decodeIfPresent(Date.self, forKey: .author)
-        url = try values.decodeIfPresent(URL.self, forKey: .url)
+        title = try container.decode(String.self, forKey: .title)
+        author = try container.decode(String.self, forKey: .author)
+        thumbnailURL = try container.decodeIfPresent(URL.self, forKey: .thumbnailURL)
+        commentsCountNumber = try container.decodeIfPresent(Int.self, forKey: .commentsCountNumber) ?? 0
+        creation = try container.decodeIfPresent(Date.self, forKey: .creation)
+        url = try container.decodeIfPresent(URL.self, forKey: .url)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(title, forKey: .title)
+        try container.encode(author, forKey: .author)
+        try container.encode(thumbnailURL, forKey: .thumbnailURL)
+        try container.encode(commentsCountNumber, forKey: .commentsCountNumber)
+        try container.encode(creation, forKey: .creation)
+        try container.encode(url, forKey: .url)
     }
     
     func commentsCount() -> String {

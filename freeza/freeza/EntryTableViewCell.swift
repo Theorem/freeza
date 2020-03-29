@@ -2,7 +2,7 @@ import UIKit
 
 protocol EntryTableViewCellDelegate {
     
-    func presentImage(withURL url: URL)
+    func presentEntry(withEntry entry: EntryViewModel)
 }
 
 class EntryTableViewCell: UITableViewCell {
@@ -33,9 +33,8 @@ class EntryTableViewCell: UITableViewCell {
     
     @IBAction func thumbnailButtonTapped(_ sender: AnyObject) {
         
-        if let url = self.entry?.url {
-            
-            self.delegate?.presentImage(withURL: url)
+        if let entry = self.entry {            
+            self.delegate?.presentEntry(withEntry: entry)
         }
     }
     

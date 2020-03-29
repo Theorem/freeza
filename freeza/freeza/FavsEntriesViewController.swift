@@ -7,13 +7,18 @@ class FavsEntriesViewController: UITableViewController {
     let viewModel = FavouritesEntriesViewModel(with: FavouritesEntriesUserDefaultsStorage.shared)
     let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let errorLabel = UILabel()
-    var urlToDisplay: URL?
+    var entryToDisplay: EntryViewModel?
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         self.configureViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.loadEntries()
     }
 
@@ -33,8 +38,9 @@ class FavsEntriesViewController: UITableViewController {
         if segue.identifier == FavsEntriesViewController.showImageSegueIdentifier {
             
             if let urlViewController = segue.destination as? URLViewController {
-                
-                urlViewController.url = self.urlToDisplay
+                urlViewController.delegate = self
+                urlViewController.isFav = true
+                urlViewController.entry = self.entryToDisplay
             }
         }
     }
@@ -131,9 +137,32 @@ extension FavsEntriesViewController { // UITableViewDataSource
 
 extension FavsEntriesViewController: EntryTableViewCellDelegate {
  
-    func presentImage(withURL url: URL) {
+    func presentEntry(withEntry entry: EntryViewModel) {
         
-        self.urlToDisplay = url
-        self.performSegue(withIdentifier: FavsEntriesViewController.showImageSegueIdentifier, sender: self)
+        self.entryToDisplay = entry
+        self.performSegue(withIdentifier: TopEntriesViewController.showImageSegueIdentifier, sender: self)
     }
+}
+
+
+extension FavsEntriesViewController: URLViewControllerDelegate {
+    
+    func addToFavorites(entry: EntryViewModel) -> Bool {
+        do {
+            try FavouritesEntriesUserDefaultsStorage.shared.add(entry: entry)
+            return true
+        } catch _ {
+            return false
+        }
+    }
+    
+    func removeFromFavorites(entry: EntryViewModel) -> Bool {
+        do {
+            try FavouritesEntriesUserDefaultsStorage.shared.remove(entry: entry)
+            return true
+        } catch _ {
+            return false
+        }
+    }
+    
 }
