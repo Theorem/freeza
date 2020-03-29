@@ -4,6 +4,7 @@ import UIKit
 class URLViewController: UIViewController {
     
     var url: URL?
+    var isFav = false
     
     @IBOutlet private weak var webView: UIWebView!
     
@@ -20,6 +21,8 @@ class URLViewController: UIViewController {
         
             self.webView.loadRequest(URLRequest(url: url))
         }
+        
+        
     }
 }
 

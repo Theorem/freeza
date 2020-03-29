@@ -65,7 +65,7 @@ class EntryTableViewCell: UITableViewCell {
         
         self.thumbnailButton.setImage(entry.thumbnail, for: [])
         self.authorLabel.text = entry.author
-        self.commentsCountLabel.text = entry.commentsCount
+        self.commentsCountLabel.text = entry.commentsCount()
         self.ageLabel.text = entry.age
         self.entryTitleLabel.text = entry.title
         
