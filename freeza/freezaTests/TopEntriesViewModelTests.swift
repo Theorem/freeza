@@ -12,10 +12,10 @@ class TopEntriesViewModelTests: XCTestCase {
         
         topEntriesViewModel.loadEntries {
             
-            XCTAssertEqual(topEntriesViewModel.entries.count, 50)
+            XCTAssertEqual(topEntriesViewModel.allEntries.count, 50)
             XCTAssertFalse(topEntriesViewModel.hasError)
             
-            topEntriesViewModel.entries.forEach { entryViewModel in
+            topEntriesViewModel.allEntries.forEach { entryViewModel in
                 
                 XCTAssertFalse(entryViewModel.hasError)
             }

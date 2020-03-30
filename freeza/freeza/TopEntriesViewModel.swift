@@ -4,8 +4,15 @@ class TopEntriesViewModel {
     
     var hasError = false
     var errorMessage: String? = nil
-    var entries = [EntryViewModel]()
-
+    var allEntries = [EntryViewModel]()
+    var safeEntries: [EntryViewModel] {
+        get {
+            allEntries.filter({ entry in
+                return !entry.hasExplicitContent
+            })
+        }
+    }
+    
     private let client: Client
     private var afterTag: String? = nil
 
@@ -14,7 +21,7 @@ class TopEntriesViewModel {
         self.client = client
     }
     
-    func loadEntries(withCompletion completionHandler: @escaping () -> ()) {
+    func loadEntries(reload: Bool = false, withCompletion completionHandler: @escaping () -> ()) {
         
         self.client.fetchTop(after: self.afterTag, completionHandler: { [weak self] responseDictionary in
             
@@ -46,7 +53,7 @@ class TopEntriesViewModel {
                     return entryViewModel
                 }
             
-            strongSelf.entries.append(contentsOf: newEntries)
+            strongSelf.allEntries.append(contentsOf: newEntries)
             
                 strongSelf.hasError = false
                 strongSelf.errorMessage = nil

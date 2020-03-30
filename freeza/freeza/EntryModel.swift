@@ -37,7 +37,7 @@ struct EntryModel {
         self.creation = dateFromDictionary(withAttributeName: "created_utc")
         self.thumbnailURL = urlFromDictionary(withAttributeName: "thumbnail")
         self.commentsCount = dictionary["num_comments"] as? Int
-        self.url = urlFromDictionary(withAttributeName: "url")
+        self.url = urlFromDictionary(withAttributeName: "url")        
         self.over18 = dictionary["over_18"] as? Bool
     }
 }

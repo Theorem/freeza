@@ -10,10 +10,18 @@ import UIKit
 
 class FavouritesEntriesViewModel {
 
-    var entries = [EntryViewModel]()
     var hasError = false
     var errorMessage: String? = nil
 
+    var allEntries = [EntryViewModel]()
+    var safeEntries: [EntryViewModel] {
+        get {
+            allEntries.filter({ entry in
+                return !entry.hasExplicitContent
+            })
+        }
+    }
+    
     private let storage: FavouritesEntriesStorageProtocol!
     
     init(with storage: FavouritesEntriesStorageProtocol) {
@@ -31,11 +39,11 @@ class FavouritesEntriesViewModel {
                 }
                 
                 self.hasError = true
-                self.entries.removeAll()                    
+                self.allEntries.removeAll()                    
                 completionHandler()
                 return
             }
-            self.entries = entries
+            self.allEntries = entries
             self.hasError = false
             self.errorMessage = nil
             completionHandler()

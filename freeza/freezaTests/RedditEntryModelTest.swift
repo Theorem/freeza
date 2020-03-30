@@ -10,13 +10,15 @@ class RedditEntryModelTest: XCTestCase {
         let creation = NSDate()
         let thumbnailURL = URL(string: "http://mysite.com/thumb.jpg")!
         let commentsCount = 200
+        let over18 = true
         
         let dictionary: [String: AnyObject] = [
             "title": title as AnyObject,
             "author": author as AnyObject,
             "created_utc": creation.timeIntervalSince1970 as AnyObject,
             "thumbnail": thumbnailURL.absoluteString as AnyObject,
-            "num_comments": commentsCount as AnyObject
+            "num_comments": commentsCount as AnyObject,
+            "over_18": over18 as AnyObject
         ]
         
         let entryModel = EntryModel(withDictionary: dictionary)
@@ -26,6 +28,7 @@ class RedditEntryModelTest: XCTestCase {
         XCTAssertEqual(entryModel.creation?.timeIntervalSince1970, creation.timeIntervalSince1970)
         XCTAssertEqual(entryModel.thumbnailURL, thumbnailURL)
         XCTAssertEqual(entryModel.commentsCount, commentsCount)
+        XCTAssertEqual(entryModel.over18, over18)
     }
     
     func testInitWithNils() {
@@ -38,5 +41,6 @@ class RedditEntryModelTest: XCTestCase {
         XCTAssertNil(entryModel.creation)
         XCTAssertNil(entryModel.thumbnailURL)
         XCTAssertNil(entryModel.commentsCount)
+        XCTAssertNil(entryModel.over18)
     }
 }

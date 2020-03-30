@@ -45,7 +45,7 @@ public class EntryViewModel: Codable {
     let url: URL?
     let creation: Date?
     let thumbnailURL: URL?
-
+    let hasExplicitContent: Bool
 
     init(withModel model: EntryModel) {
         
@@ -61,6 +61,7 @@ public class EntryViewModel: Codable {
         self.commentsCountNumber = model.commentsCount ?? 0
         self.creation = model.creation
         self.url = model.url
+        self.hasExplicitContent = model.over18 ?? false
 
         if model.title == nil ||
             model.author == nil ||
@@ -78,6 +79,7 @@ public class EntryViewModel: Codable {
         case commentsCountNumber
         case creation
         case url
+        case hasExplicitContent
     }
     
     required public init(from decoder: Decoder) throws {
@@ -89,6 +91,7 @@ public class EntryViewModel: Codable {
         commentsCountNumber = try container.decodeIfPresent(Int.self, forKey: .commentsCountNumber) ?? 0
         creation = try container.decodeIfPresent(Date.self, forKey: .creation)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
+        hasExplicitContent = try container.decodeIfPresent(Bool.self, forKey: .hasExplicitContent) ?? false
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -100,6 +103,7 @@ public class EntryViewModel: Codable {
         try container.encode(commentsCountNumber, forKey: .commentsCountNumber)
         try container.encode(creation, forKey: .creation)
         try container.encode(url, forKey: .url)
+        try container.encode(hasExplicitContent, forKey: .hasExplicitContent)
     }
     
     func commentsCount() -> String {

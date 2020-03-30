@@ -8,7 +8,8 @@ class FavsEntriesViewController: UITableViewController {
     let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let errorLabel = UILabel()
     var entryToDisplay: EntryViewModel?
-
+    var isShowingExplicitContent: Bool!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -19,6 +20,7 @@ class FavsEntriesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        isShowingExplicitContent = SettingsViewController.canShowExplicitContent()
         self.loadEntries()
     }
 
@@ -125,15 +127,18 @@ class FavsEntriesViewController: UITableViewController {
 extension FavsEntriesViewController { // UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.viewModel.entries.count
+        let entriesList = isShowingExplicitContent ? self.viewModel.allEntries : self.viewModel.safeEntries
+        return entriesList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let entryTableViewCell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewCell.cellId, for: indexPath as IndexPath) as! EntryTableViewCell
         
-        entryTableViewCell.entry = self.viewModel.entries[indexPath.row]
+        let entriesList = isShowingExplicitContent ? self.viewModel.allEntries : self.viewModel.safeEntries
+        let entry = entriesList[indexPath.row]
+        
+        entryTableViewCell.entry = entry
         
         return entryTableViewCell
     }
@@ -144,7 +149,9 @@ extension FavsEntriesViewController { // UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let entry = self.viewModel.entries[indexPath.row]
+        let entriesList = isShowingExplicitContent ? self.viewModel.allEntries : self.viewModel.safeEntries
+        let entry = entriesList[indexPath.row]
+
         self.presentEntry(withEntry: entry)
     }
 }

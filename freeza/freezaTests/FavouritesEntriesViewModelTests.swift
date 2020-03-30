@@ -53,8 +53,8 @@ class FavouritesEntriesViewModelTests: XCTestCase {
         favsEntriesViewModel.loadEntries {
             
             XCTAssertFalse(favsEntriesViewModel.hasError)
-            XCTAssertEqual(favsEntriesViewModel.entries.count, 1)
-            if let first = favsEntriesViewModel.entries.first {
+            XCTAssertEqual(favsEntriesViewModel.allEntries.count, 1)
+            if let first = favsEntriesViewModel.allEntries.first {
                 XCTAssertEqual(first.title, title)
                 XCTAssertEqual(first.author, author)
             } else {

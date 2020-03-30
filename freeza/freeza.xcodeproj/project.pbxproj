@@ -29,6 +29,7 @@
 		3F9E6F332430CCC600FAA87C /* FavouritesEntriesUserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E6F312430CCC600FAA87C /* FavouritesEntriesUserDefaultsStorage.swift */; };
 		3F9E6F342430CCC600FAA87C /* FavouritesEntriesStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E6F322430CCC600FAA87C /* FavouritesEntriesStorageProtocol.swift */; };
 		3F9E6F362430F7DD00FAA87C /* FavsEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E6F352430F7DD00FAA87C /* FavsEntriesViewController.swift */; };
+		3FE9E159243185E000179434 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9E158243185E000179434 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		3F9E6F312430CCC600FAA87C /* FavouritesEntriesUserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesEntriesUserDefaultsStorage.swift; path = freeza/FavouritesEntriesUserDefaultsStorage.swift; sourceTree = SOURCE_ROOT; };
 		3F9E6F322430CCC600FAA87C /* FavouritesEntriesStorageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesEntriesStorageProtocol.swift; path = freeza/FavouritesEntriesStorageProtocol.swift; sourceTree = SOURCE_ROOT; };
 		3F9E6F352430F7DD00FAA87C /* FavsEntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavsEntriesViewController.swift; sourceTree = "<group>"; };
+		3FE9E158243185E000179434 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				3F9E6F352430F7DD00FAA87C /* FavsEntriesViewController.swift */,
 				31AA46F81D0C526D006C42BA /* TopEntriesViewController.swift */,
 				31E7F2A81D0CFAFC00C7CA70 /* URLViewController.swift */,
+				3FE9E158243185E000179434 /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				31AA46E51D0B8DA9006C42BA /* EntryViewModel.swift in Sources */,
 				31CAC1471D0B412600E553AC /* AppDelegate.swift in Sources */,
 				31AA46E91D0B9618006C42BA /* NSDate+AgeFormatter.swift in Sources */,
+				3FE9E159243185E000179434 /* SettingsViewController.swift in Sources */,
 				31E7F2A91D0CFAFC00C7CA70 /* URLViewController.swift in Sources */,
 				31AA46FE1D0C54A5006C42BA /* EntryTableViewCell.swift in Sources */,
 				31AA46F91D0C526D006C42BA /* TopEntriesViewController.swift in Sources */,
