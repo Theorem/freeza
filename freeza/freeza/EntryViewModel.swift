@@ -21,6 +21,21 @@ public class EntryViewModel: Codable {
         }
     }
     
+    var isOlder: Bool {
+        
+        get {
+            
+            guard let creation = self.creation else {
+                
+                return false
+            }
+            
+            return creation.isOlderThan(days: 1.0)
+            
+        }
+        
+    }
+    
     
     private var thumbnailFetched = false
     

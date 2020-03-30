@@ -18,6 +18,8 @@ class EntryTableViewCell: UITableViewCell {
     @IBOutlet private weak var ageLabel: UILabel!
     @IBOutlet private weak var entryTitleLabel: UILabel!
     
+    @IBOutlet weak var ageLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var olderLabelWidthConstraint: NSLayoutConstraint!
     override func layoutSubviews() {
         
         super.layoutSubviews()
@@ -53,6 +55,8 @@ class EntryTableViewCell: UITableViewCell {
         self.commentsCountLabel.text = entry.commentsCount()
         self.ageLabel.text = entry.age
         self.entryTitleLabel.text = entry.title
+        self.olderLabelWidthConstraint.constant = entry.isOlder ? 52.0 : 0
+        self.ageLabelLeadingConstraint.constant = entry.isOlder ? 12.0 : 0
         
         entry.loadThumbnail { [weak self] in
             
