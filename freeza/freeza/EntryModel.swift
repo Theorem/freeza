@@ -8,6 +8,7 @@ struct EntryModel {
     let thumbnailURL: URL?
     let commentsCount: Int?
     let url: URL?
+    let over18: Bool?
     
     init(withDictionary dictionary: [String: AnyObject]) {
         
@@ -37,5 +38,6 @@ struct EntryModel {
         self.thumbnailURL = urlFromDictionary(withAttributeName: "thumbnail")
         self.commentsCount = dictionary["num_comments"] as? Int
         self.url = urlFromDictionary(withAttributeName: "url")
+        self.over18 = dictionary["over_18"] as? Bool
     }
 }
