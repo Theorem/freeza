@@ -11,7 +11,7 @@
         <scene sceneID="dpn-Uo-3JQ">
             <objects>
                 <tableViewController id="2Fm-PT-q0X" customClass="TopEntriesViewController" customModule="freeza" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" id="z3l-0C-udU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" id="z3l-0C-udU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,9 +64,6 @@
                                                 <constraint firstAttribute="width" secondItem="4kO-7S-4fe" secondAttribute="height" multiplier="3:2" id="gf8-oB-k1u"/>
                                             </constraints>
                                             <state key="normal" image="thumbnail-placeholder"/>
-                                            <connections>
-                                                <action selector="thumbnailButtonTapped:" destination="4pU-iB-mch" eventType="touchUpInside" id="QqG-ae-FYm"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -206,7 +203,7 @@
         <scene sceneID="7H7-Sa-ADz">
             <objects>
                 <tableViewController id="Thh-UR-zHN" customClass="FavsEntriesViewController" customModule="freeza" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" id="ne4-tr-X5q">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" id="ne4-tr-X5q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -259,9 +256,6 @@
                                                 <constraint firstAttribute="width" secondItem="uVZ-3z-YYO" secondAttribute="height" multiplier="3:2" id="goD-1Q-2IK"/>
                                             </constraints>
                                             <state key="normal" image="thumbnail-placeholder"/>
-                                            <connections>
-                                                <action selector="thumbnailButtonTapped:" destination="wo0-IH-PIV" eventType="touchUpInside" id="ILi-Mp-q3W"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
