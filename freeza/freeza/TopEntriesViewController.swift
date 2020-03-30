@@ -131,6 +131,11 @@ class TopEntriesViewController: UITableViewController {
             self.navigationController?.setToolbarHidden(false, animated: true)
         }
     }
+        
+    private func presentEntry(withEntry entry: EntryViewModel) {
+        self.entryToDisplay = entry
+        self.performSegue(withIdentifier: TopEntriesViewController.showImageSegueIdentifier, sender: self)
+    }
 }
 
 extension TopEntriesViewController { // UITableViewDataSource
@@ -145,18 +150,18 @@ extension TopEntriesViewController { // UITableViewDataSource
         let entryTableViewCell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewCell.cellId, for: indexPath as IndexPath) as! EntryTableViewCell
         
         entryTableViewCell.entry = self.viewModel.entries[indexPath.row]
-        entryTableViewCell.delegate = self
         
         return entryTableViewCell
     }
 }
 
-extension TopEntriesViewController: EntryTableViewCellDelegate {
- 
-    func presentEntry(withEntry entry: EntryViewModel) {
+extension TopEntriesViewController { //  UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        self.entryToDisplay = entry
-        self.performSegue(withIdentifier: TopEntriesViewController.showImageSegueIdentifier, sender: self)
+        let entry = self.viewModel.entries[indexPath.row]
+        self.presentEntry(withEntry: entry)
     }
 }
 
