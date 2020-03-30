@@ -52,4 +52,8 @@ extension Date {
             return "A long time ago"
         }
     }
+    
+    func isOlderThan(days: Double) -> Bool {
+        return -self.timeIntervalSinceNow >= days * 24 * 60 * 60
+    }
 }
