@@ -30,6 +30,11 @@
 		BF029956246490A0006CB59D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF029955246490A0006CB59D /* UIView+Extensions.swift */; };
 		BF0299582464910C006CB59D /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299572464910C006CB59D /* UIViewController+Extensions.swift */; };
 		BF02995A2464933A006CB59D /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299592464933A006CB59D /* Asset.swift */; };
+		BF02995C24649F11006CB59D /* UITabBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02995B24649F11006CB59D /* UITabBar+Extensions.swift */; };
+		BF02995E2464A216006CB59D /* TabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02995D2464A216006CB59D /* TabBarTests.swift */; };
+		BF0299612464A2D0006CB59D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299602464A2D0006CB59D /* UIView+Extensions.swift */; };
+		BF0299632464A305006CB59D /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299622464A305006CB59D /* Array+Extensions.swift */; };
+		BF0299642464A31F006CB59D /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299622464A305006CB59D /* Array+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,10 @@
 		BF029955246490A0006CB59D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		BF0299572464910C006CB59D /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		BF0299592464933A006CB59D /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		BF02995B24649F11006CB59D /* UITabBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extensions.swift"; sourceTree = "<group>"; };
+		BF02995D2464A216006CB59D /* TabBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTests.swift; sourceTree = "<group>"; };
+		BF0299602464A2D0006CB59D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		BF0299622464A305006CB59D /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +142,7 @@
 			children = (
 				31AA46ED1D0B97EE006C42BA /* NSDate+AgeFormatterTests.swift */,
 				31AA46F31D0C3F9E006C42BA /* TopEntriesViewModelTests.swift */,
+				BF02995D2464A216006CB59D /* TabBarTests.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -200,6 +210,7 @@
 		31CAC15A1D0B412600E553AC /* freezaTests */ = {
 			isa = PBXGroup;
 			children = (
+				BF02995F2464A2C0006CB59D /* Extensions */,
 				31AA46DD1D0B438C006C42BA /* Connectivity */,
 				31AA46EA1D0B9783006C42BA /* ViewModels */,
 				31CAC15D1D0B412600E553AC /* Info.plist */,
@@ -231,6 +242,16 @@
 			children = (
 				BF029955246490A0006CB59D /* UIView+Extensions.swift */,
 				BF0299572464910C006CB59D /* UIViewController+Extensions.swift */,
+				BF02995B24649F11006CB59D /* UITabBar+Extensions.swift */,
+				BF0299622464A305006CB59D /* Array+Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		BF02995F2464A2C0006CB59D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF0299602464A2D0006CB59D /* UIView+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -339,6 +360,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF029956246490A0006CB59D /* UIView+Extensions.swift in Sources */,
+				BF0299632464A305006CB59D /* Array+Extensions.swift in Sources */,
+				BF02995C24649F11006CB59D /* UITabBar+Extensions.swift in Sources */,
 				BF02995324649076006CB59D /* TabBarViewModel.swift in Sources */,
 				31AA46E31D0B885C006C42BA /* TopEntriesViewModel.swift in Sources */,
 				31AA46E71D0B8F23006C42BA /* Client.swift in Sources */,
@@ -361,9 +384,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0299612464A2D0006CB59D /* UIView+Extensions.swift in Sources */,
 				31AA46DF1D0B43A0006C42BA /* RedditEntryModelTest.swift in Sources */,
 				31AA46F41D0C3F9E006C42BA /* TopEntriesViewModelTests.swift in Sources */,
+				BF0299642464A31F006CB59D /* Array+Extensions.swift in Sources */,
 				31AA46EE1D0B97EE006C42BA /* NSDate+AgeFormatterTests.swift in Sources */,
+				BF02995E2464A216006CB59D /* TabBarTests.swift in Sources */,
 				31AA46E11D0B4D2C006C42BA /* ReditClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
