@@ -17,34 +17,24 @@ class EntryTableViewCell: UITableViewCell {
         }
     }
     
-    var delegate: EntryTableViewCellDelegate?
-    
-    @IBOutlet private weak var thumbnailButton: UIButton!
+    @IBOutlet private weak var thumbnailImageView: UIImageView!
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var commentsCountLabel: UILabel!
     @IBOutlet private weak var ageLabel: UILabel!
     @IBOutlet private weak var entryTitleLabel: UILabel!
     
     override func layoutSubviews() {
-        
         super.layoutSubviews()
         self.configureViews()
-    }
-    
-    @IBAction func thumbnailButtonTapped(_ sender: AnyObject) {
-        
-        if let url = self.entry?.url {
-            
-            self.delegate?.presentImage(withURL: url)
-        }
     }
     
     private func configureViews() {
         
         func configureThumbnailImageView() {
         
-            self.thumbnailButton.layer.borderColor = UIColor.black.cgColor
-            self.thumbnailButton.layer.borderWidth = 1
+            self.thumbnailImageView.layer.borderColor = UIColor.black.cgColor
+            self.thumbnailImageView.layer.borderWidth = 1
+            self.thumbnailImageView.contentMode = .scaleToFill
         }
         
         func configureCommentsCountLabel() {
@@ -63,15 +53,14 @@ class EntryTableViewCell: UITableViewCell {
             return
         }
         
-        self.thumbnailButton.setImage(entry.thumbnail, for: [])
+        self.thumbnailImageView.image = entry.thumbnail
         self.authorLabel.text = entry.author
         self.commentsCountLabel.text = entry.commentsCount
         self.ageLabel.text = entry.age
         self.entryTitleLabel.text = entry.title
         
         entry.loadThumbnail { [weak self] in
-            
-            self?.thumbnailButton.setImage(entry.thumbnail, for: [])
+            self?.thumbnailImageView.image = entry.thumbnail
         }
     }
 }
