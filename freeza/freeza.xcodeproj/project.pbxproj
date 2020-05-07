@@ -24,6 +24,12 @@
 		31CAC14E1D0B412600E553AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CAC14D1D0B412600E553AC /* Assets.xcassets */; };
 		31CAC1511D0B412600E553AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31CAC14F1D0B412600E553AC /* LaunchScreen.storyboard */; };
 		31E7F2A91D0CFAFC00C7CA70 /* URLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E7F2A81D0CFAFC00C7CA70 /* URLViewController.swift */; };
+		BF02994524648A26006CB59D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02994424648A26006CB59D /* TabBarController.swift */; };
+		BF02995124648B2B006CB59D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02995024648B2B006CB59D /* TabBarView.swift */; };
+		BF02995324649076006CB59D /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02995224649076006CB59D /* TabBarViewModel.swift */; };
+		BF029956246490A0006CB59D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF029955246490A0006CB59D /* UIView+Extensions.swift */; };
+		BF0299582464910C006CB59D /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299572464910C006CB59D /* UIViewController+Extensions.swift */; };
+		BF02995A2464933A006CB59D /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299592464933A006CB59D /* Asset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +64,12 @@
 		31CAC1571D0B412600E553AC /* freezaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = freezaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31CAC15D1D0B412600E553AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E7F2A81D0CFAFC00C7CA70 /* URLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLViewController.swift; sourceTree = "<group>"; };
+		BF02994424648A26006CB59D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BF02995024648B2B006CB59D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		BF02995224649076006CB59D /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		BF029955246490A0006CB59D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		BF0299572464910C006CB59D /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		BF0299592464933A006CB59D /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +185,8 @@
 		31CAC1451D0B412600E553AC /* freeza */ = {
 			isa = PBXGroup;
 			children = (
+				BF02995424649090006CB59D /* Extensions */,
+				BF029943246489F9006CB59D /* Components */,
 				31AA46D61D0B4183006C42BA /* Connectivity */,
 				31AA46FC1D0C5480006C42BA /* Storyboards */,
 				31AA46FB1D0C5470006C42BA /* Support */,
@@ -191,6 +205,34 @@
 				31CAC15D1D0B412600E553AC /* Info.plist */,
 			);
 			path = freezaTests;
+			sourceTree = "<group>";
+		};
+		BF029942246489E8006CB59D /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BF02994424648A26006CB59D /* TabBarController.swift */,
+				BF02995024648B2B006CB59D /* TabBarView.swift */,
+				BF02995224649076006CB59D /* TabBarViewModel.swift */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		BF029943246489F9006CB59D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BF029942246489E8006CB59D /* TabBar */,
+				BF0299592464933A006CB59D /* Asset.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		BF02995424649090006CB59D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF029955246490A0006CB59D /* UIView+Extensions.swift */,
+				BF0299572464910C006CB59D /* UIViewController+Extensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +298,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -295,15 +338,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF029956246490A0006CB59D /* UIView+Extensions.swift in Sources */,
+				BF02995324649076006CB59D /* TabBarViewModel.swift in Sources */,
 				31AA46E31D0B885C006C42BA /* TopEntriesViewModel.swift in Sources */,
 				31AA46E71D0B8F23006C42BA /* Client.swift in Sources */,
+				BF02994524648A26006CB59D /* TabBarController.swift in Sources */,
 				31AA46DA1D0B4249006C42BA /* EntryModel.swift in Sources */,
+				BF02995A2464933A006CB59D /* Asset.swift in Sources */,
 				31AA46E51D0B8DA9006C42BA /* EntryViewModel.swift in Sources */,
+				BF0299582464910C006CB59D /* UIViewController+Extensions.swift in Sources */,
 				31CAC1471D0B412600E553AC /* AppDelegate.swift in Sources */,
 				31AA46E91D0B9618006C42BA /* NSDate+AgeFormatter.swift in Sources */,
 				31E7F2A91D0CFAFC00C7CA70 /* URLViewController.swift in Sources */,
 				31AA46FE1D0C54A5006C42BA /* EntryTableViewCell.swift in Sources */,
 				31AA46F91D0C526D006C42BA /* TopEntriesViewController.swift in Sources */,
+				BF02995124648B2B006CB59D /* TabBarView.swift in Sources */,
 				31AA46D81D0B419B006C42BA /* RedditClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -441,7 +490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
