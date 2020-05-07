@@ -12,7 +12,6 @@ class TopEntriesViewController: UITableViewController {
     var urlToDisplay: URL?
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         self.configureViews()
@@ -75,7 +74,7 @@ class TopEntriesViewController: UITableViewController {
         }
 
         func configureTableView() {
-            
+            self.tableView.allowsSelection = true
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.estimatedRowHeight = 110.0
 
@@ -133,7 +132,6 @@ class TopEntriesViewController: UITableViewController {
 extension TopEntriesViewController { // UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.viewModel.entries.count
     }
     
@@ -142,16 +140,23 @@ extension TopEntriesViewController { // UITableViewDataSource
         let entryTableViewCell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewCell.cellId, for: indexPath as IndexPath) as! EntryTableViewCell
         
         entryTableViewCell.entry = self.viewModel.entries[indexPath.row]
-        entryTableViewCell.delegate = self
         
         return entryTableViewCell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let entry = self.viewModel.entries[indexPath.row]
+        guard let entryURL = entry.url else {
+            // TODO: In the future, we should track or something similar
+            return
+        }
+        self.presentImage(withURL: entryURL)
+    }
 }
 
-extension TopEntriesViewController: EntryTableViewCellDelegate {
+extension TopEntriesViewController {
  
     func presentImage(withURL url: URL) {
-        
         self.urlToDisplay = url
         self.performSegue(withIdentifier: TopEntriesViewController.showImageSegueIdentifier, sender: self)
     }
