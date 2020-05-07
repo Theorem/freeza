@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TabBarItem: CaseIterable {
+public enum TabBarItem: CaseIterable {
     case favorite
     case home
     case settings
@@ -29,7 +29,5 @@ enum TabBarItem: CaseIterable {
 final class TabBarViewModel {
     
     let items: [TabBarItem] = TabBarItem.allCases
-    
-    let selectedItem: TabBarItem = .home
-    
+
 }

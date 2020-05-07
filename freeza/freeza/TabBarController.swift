@@ -14,12 +14,12 @@ final class TabBarController: UIViewController {
     
     fileprivate let _view: TabBarView
     
-    let tabBarControllers: [UIViewController]
+    fileprivate let _tabBarControllers: [UIViewController]
     
     init(viewModel: TabBarViewModel) {
         _viewModel = viewModel
         _view = TabBarView(items: viewModel.items)
-        tabBarControllers = createTabBarControllers(items: viewModel.items)
+        _tabBarControllers = createTabBarControllers(items: viewModel.items)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,23 +34,46 @@ final class TabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         display(item: .home)
+        bindViewModel()
     }
     
 }
 
 fileprivate extension TabBarController {
     
+    func bindViewModel() {
+        _view.tabBar.delegate = self
+    }
+    
     func display(item: TabBarItem) {
-        tabBarControllers.forEach {
-            $0.removeFromParentViewController()
-        }
-        
+        // This is hacky, but it's basically for showing the tabbar
+        // initial tab selected color. selectedItem doesn't trigger the
+        // delegate didSelect
         let index = _viewModel.items.firstIndex(of: item)!
+        _view.tabBar.selectedItem = _view.tabBar.items?[index]
+        
+        _tabBarControllers.forEach {
+            self.remove($0)
+        }
+
         self.load(
-            viewController: tabBarControllers[index],
+            viewController: _tabBarControllers[index],
             intoView: _view.contentView
         )
     }
+}
+
+extension TabBarController: UITabBarDelegate {
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let itemIndex = tabBar.indexForItem(item) else {
+            // TODO: This shouldn't happen. In the future, we should track
+            // or something similar
+            return
+        }
+        self.display(item: _viewModel.items[itemIndex])
+    }
+    
 }
 
 private func createTabBarControllers(items: [TabBarItem]) -> [UIViewController] {
