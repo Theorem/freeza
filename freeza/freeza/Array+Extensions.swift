@@ -6,7 +6,7 @@
 //  Copyright © 2020 Zerously. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension Array {
     
@@ -16,6 +16,38 @@ extension Array {
     
     subscript (safe index: Int) -> Element? {
         return index < count ? self[index] : nil
+    }
+    
+}
+
+enum SpacingType {
+    case constant(CGFloat)
+    case customSpacingAfterView([UIView: CGFloat])
+}
+
+extension Array where Element: UIView {
+    
+    @available(iOS 11.0, *)
+    func stacked(
+        axis: NSLayoutConstraint.Axis,
+        spacing: SpacingType,
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill) -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: self)
+        stackView.axis = axis
+        stackView.distribution = distribution
+        stackView.alignment = alignment
+        
+        switch spacing {
+        case .constant(let spacing):
+            stackView.spacing = spacing
+        case .customSpacingAfterView(let viewsAndSpacing):
+            viewsAndSpacing.forEach { key, value in
+                stackView.setCustomSpacing(value, after: key)
+            }
+        }
+    
+        return stackView
     }
     
 }

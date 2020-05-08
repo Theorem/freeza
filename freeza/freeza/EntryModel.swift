@@ -9,6 +9,11 @@ struct EntryModel: Equatable {
     let commentsCount: Int?
     let url: URL?
     let isFavorite: Bool
+    let over18: Bool
+    
+    var isSafeContent: Bool {
+        return !over18
+    }
     
     var asDictionary: [String: AnyObject] {
         return [
@@ -17,7 +22,8 @@ struct EntryModel: Equatable {
             "created_utc": creation.map { $0.timeIntervalSince1970 as AnyObject },
             "thumbnail": thumbnailURL.map { $0.absoluteString as AnyObject },
             "num_comments": commentsCount.map { $0 as AnyObject },
-            "url": url.map { $0.absoluteString as AnyObject }
+            "url": url.map { $0.absoluteString as AnyObject },
+            "over_18": over18 as AnyObject
             ]
             .compactMapValues { $0 }
     }
@@ -28,7 +34,8 @@ struct EntryModel: Equatable {
         thumbnailURL: URL?,
         commentsCount: Int?,
         url: URL?,
-        isFavorite: Bool) {
+        isFavorite: Bool,
+        over18: Bool) {
         self.title = title
         self.author = author
         self.creation = creation
@@ -36,6 +43,7 @@ struct EntryModel: Equatable {
         self.commentsCount = commentsCount
         self.url = url
         self.isFavorite = isFavorite
+        self.over18 = over18
     }
     
     init(withDictionary dictionary: [String: AnyObject], isFavorite: Bool) {
@@ -67,6 +75,7 @@ struct EntryModel: Equatable {
         self.commentsCount = dictionary["num_comments"] as? Int
         self.url = urlFromDictionary(withAttributeName: "url")
         self.isFavorite = isFavorite
+        self.over18 = dictionary["over_18"] as? Bool ?? false
     }
     
     func updating(isFavorite: Bool? = nil) -> EntryModel {
@@ -77,7 +86,8 @@ struct EntryModel: Equatable {
             thumbnailURL: self.thumbnailURL,
             commentsCount: self.commentsCount,
             url: self.url,
-            isFavorite: isFavorite ?? self.isFavorite
+            isFavorite: isFavorite ?? self.isFavorite,
+            over18: self.over18
         )
     }
     

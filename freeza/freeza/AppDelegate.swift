@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let tabBarViewModel = TabBarViewModel(favoriteService: FavoriteEntriesService(storage: DocumentsDirectoryStorage()))
+        let tabBarViewModel = TabBarViewModel(
+            favoriteService: FavoriteEntriesService(storage: DocumentsDirectoryStorage()),
+            settings: Settings(storage: UserDefaults())
+        )
         let tabBarController = TabBarController(viewModel: tabBarViewModel)
         
         self.window?.rootViewController = tabBarController

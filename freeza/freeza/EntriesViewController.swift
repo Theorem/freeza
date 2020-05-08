@@ -139,21 +139,22 @@ class EntriesViewController: UITableViewController {
 extension EntriesViewController { // UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.entries.count
+        return self.viewModel.shownEntries().count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let entryTableViewCell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewCell.cellId, for: indexPath as IndexPath) as! EntryTableViewCell
         
-        entryTableViewCell.entry = self.viewModel.entries[indexPath.row]
+        // TODO: This is inefficient
+        entryTableViewCell.entry = self.viewModel.shownEntries()[indexPath.row]
         entryTableViewCell.delegate = self
         
         return entryTableViewCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let entry = self.viewModel.entries[indexPath.row]
+        let entry = self.viewModel.shownEntries()[indexPath.row]
         guard let entryURL = entry.url else {
             // TODO: In the future, we should track or something similar
             return

@@ -41,6 +41,18 @@
 		BF02996F2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02996E2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift */; };
 		BF28B4E42465B0C00017FBD7 /* EntryModel+Faked.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B4E32465B0C00017FBD7 /* EntryModel+Faked.swift */; };
 		BF28B4E62465B0EC0017FBD7 /* FakeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B4E52465B0EC0017FBD7 /* FakeStorage.swift */; };
+		BF28B5082465CE850017FBD7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B5072465CE850017FBD7 /* Settings.swift */; };
+		BF28B50A2465D0C20017FBD7 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B5092465D0C20017FBD7 /* SettingsTests.swift */; };
+		BF28B50C2465D0EC0017FBD7 /* UserDefaults+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B50B2465D0EC0017FBD7 /* UserDefaults+Storage.swift */; };
+		BF28B50E2465D59D0017FBD7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B50D2465D59D0017FBD7 /* UIColor+Extensions.swift */; };
+		BF28B5102465D5E20017FBD7 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B50F2465D5E20017FBD7 /* Palette.swift */; };
+		BF28B5122465D9BF0017FBD7 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B5112465D9BF0017FBD7 /* PaddedLabel.swift */; };
+		BF28B5152465DCC60017FBD7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B5142465DCC60017FBD7 /* SettingsViewController.swift */; };
+		BF28B5172465DCCD0017FBD7 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B5162465DCCD0017FBD7 /* SettingsViewModel.swift */; };
+		BF28B5192465DD090017FBD7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B5182465DD090017FBD7 /* SettingsView.swift */; };
+		BF28B51C2465E2550017FBD7 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B51B2465E2550017FBD7 /* SettingsCell.swift */; };
+		BF28B51E2465E3570017FBD7 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B51D2465E3570017FBD7 /* UITableView+Extensions.swift */; };
+		BF28B5202465EABE0017FBD7 /* SettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B51F2465EABE0017FBD7 /* SettingsCellViewModel.swift */; };
 		BF72BB3B2464C9B900E5F089 /* FavoriteEntriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF72BB3A2464C9B900E5F089 /* FavoriteEntriesViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +104,18 @@
 		BF02996E2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEntriesServiceTests.swift; sourceTree = "<group>"; };
 		BF28B4E32465B0C00017FBD7 /* EntryModel+Faked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntryModel+Faked.swift"; sourceTree = "<group>"; };
 		BF28B4E52465B0EC0017FBD7 /* FakeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeStorage.swift; sourceTree = "<group>"; };
+		BF28B5072465CE850017FBD7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		BF28B5092465D0C20017FBD7 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		BF28B50B2465D0EC0017FBD7 /* UserDefaults+Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Storage.swift"; sourceTree = "<group>"; };
+		BF28B50D2465D59D0017FBD7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		BF28B50F2465D5E20017FBD7 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		BF28B5112465D9BF0017FBD7 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
+		BF28B5142465DCC60017FBD7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BF28B5162465DCCD0017FBD7 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		BF28B5182465DD090017FBD7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BF28B51B2465E2550017FBD7 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		BF28B51D2465E3570017FBD7 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		BF28B51F2465EABE0017FBD7 /* SettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellViewModel.swift; sourceTree = "<group>"; };
 		BF72BB3A2464C9B900E5F089 /* FavoriteEntriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEntriesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +183,7 @@
 				31AA46F31D0C3F9E006C42BA /* TopEntriesViewModelTests.swift */,
 				BF02995D2464A216006CB59D /* TabBarTests.swift */,
 				BF02996E2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift */,
+				BF28B5092465D0C20017FBD7 /* SettingsTests.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -249,8 +274,11 @@
 		BF029943246489F9006CB59D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BF28B5132465DCAA0017FBD7 /* Settings */,
 				BF029942246489E8006CB59D /* TabBar */,
 				BF0299592464933A006CB59D /* Asset.swift */,
+				BF28B50F2465D5E20017FBD7 /* Palette.swift */,
+				BF28B5112465D9BF0017FBD7 /* PaddedLabel.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -262,6 +290,8 @@
 				BF0299572464910C006CB59D /* UIViewController+Extensions.swift */,
 				BF02995B24649F11006CB59D /* UITabBar+Extensions.swift */,
 				BF0299622464A305006CB59D /* Array+Extensions.swift */,
+				BF28B50D2465D59D0017FBD7 /* UIColor+Extensions.swift */,
+				BF28B51D2465E3570017FBD7 /* UITableView+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -279,6 +309,7 @@
 			children = (
 				BF0299692464AD18006CB59D /* FavoriteEntriesService */,
 				BF0299682464AAD5006CB59D /* Storage */,
+				BF28B5072465CE850017FBD7 /* Settings.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -288,6 +319,7 @@
 			children = (
 				BF0299662464AA94006CB59D /* Storage.swift */,
 				BF02996C2464AE3E006CB59D /* DocumentsDirectoryStorage.swift */,
+				BF28B50B2465D0EC0017FBD7 /* UserDefaults+Storage.swift */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -307,6 +339,26 @@
 				BF28B4E52465B0EC0017FBD7 /* FakeStorage.swift */,
 			);
 			name = Mocks;
+			sourceTree = "<group>";
+		};
+		BF28B5132465DCAA0017FBD7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BF28B51A2465E24B0017FBD7 /* SettingsCell */,
+				BF28B5142465DCC60017FBD7 /* SettingsViewController.swift */,
+				BF28B5162465DCCD0017FBD7 /* SettingsViewModel.swift */,
+				BF28B5182465DD090017FBD7 /* SettingsView.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		BF28B51A2465E24B0017FBD7 /* SettingsCell */ = {
+			isa = PBXGroup;
+			children = (
+				BF28B51B2465E2550017FBD7 /* SettingsCell.swift */,
+				BF28B51F2465EABE0017FBD7 /* SettingsCellViewModel.swift */,
+			);
+			name = SettingsCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,21 +470,32 @@
 				BF0299672464AA94006CB59D /* Storage.swift in Sources */,
 				BF02995324649076006CB59D /* TabBarViewModel.swift in Sources */,
 				31AA46E31D0B885C006C42BA /* TopEntriesViewModel.swift in Sources */,
+				BF28B5122465D9BF0017FBD7 /* PaddedLabel.swift in Sources */,
 				BF02996B2464AD2D006CB59D /* FavoriteEntriesService.swift in Sources */,
 				31AA46E71D0B8F23006C42BA /* Client.swift in Sources */,
+				BF28B5082465CE850017FBD7 /* Settings.swift in Sources */,
 				BF02994524648A26006CB59D /* TabBarController.swift in Sources */,
 				31AA46DA1D0B4249006C42BA /* EntryModel.swift in Sources */,
+				BF28B50E2465D59D0017FBD7 /* UIColor+Extensions.swift in Sources */,
 				BF02996D2464AE3E006CB59D /* DocumentsDirectoryStorage.swift in Sources */,
 				BF02995A2464933A006CB59D /* Asset.swift in Sources */,
+				BF28B5192465DD090017FBD7 /* SettingsView.swift in Sources */,
 				31AA46E51D0B8DA9006C42BA /* EntryViewModel.swift in Sources */,
+				BF28B5172465DCCD0017FBD7 /* SettingsViewModel.swift in Sources */,
 				BF0299582464910C006CB59D /* UIViewController+Extensions.swift in Sources */,
+				BF28B51E2465E3570017FBD7 /* UITableView+Extensions.swift in Sources */,
 				31CAC1471D0B412600E553AC /* AppDelegate.swift in Sources */,
 				31AA46E91D0B9618006C42BA /* NSDate+AgeFormatter.swift in Sources */,
 				31E7F2A91D0CFAFC00C7CA70 /* URLViewController.swift in Sources */,
+				BF28B5102465D5E20017FBD7 /* Palette.swift in Sources */,
 				31AA46FE1D0C54A5006C42BA /* EntryTableViewCell.swift in Sources */,
+				BF28B51C2465E2550017FBD7 /* SettingsCell.swift in Sources */,
 				31AA46F91D0C526D006C42BA /* EntriesViewController.swift in Sources */,
+				BF28B5152465DCC60017FBD7 /* SettingsViewController.swift in Sources */,
+				BF28B50C2465D0EC0017FBD7 /* UserDefaults+Storage.swift in Sources */,
 				BF72BB3B2464C9B900E5F089 /* FavoriteEntriesViewModel.swift in Sources */,
 				BF02995124648B2B006CB59D /* TabBarView.swift in Sources */,
+				BF28B5202465EABE0017FBD7 /* SettingsCellViewModel.swift in Sources */,
 				31AA46D81D0B419B006C42BA /* RedditClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +507,7 @@
 				BF0299612464A2D0006CB59D /* UIView+Extensions.swift in Sources */,
 				31AA46DF1D0B43A0006C42BA /* RedditEntryModelTest.swift in Sources */,
 				BF28B4E42465B0C00017FBD7 /* EntryModel+Faked.swift in Sources */,
+				BF28B50A2465D0C20017FBD7 /* SettingsTests.swift in Sources */,
 				31AA46F41D0C3F9E006C42BA /* TopEntriesViewModelTests.swift in Sources */,
 				BF28B4E62465B0EC0017FBD7 /* FakeStorage.swift in Sources */,
 				BF0299642464A31F006CB59D /* Array+Extensions.swift in Sources */,

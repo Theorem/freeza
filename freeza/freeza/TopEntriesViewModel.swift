@@ -4,6 +4,8 @@ protocol EntriesProvider {
     
     var entries: [EntryViewModel] { get }
     
+    var settings: Settings { get }
+    
     func loadEntries(withCompletion completionHandler: @escaping () -> ())
     
     var errorMessage: String? { get }
@@ -13,11 +15,23 @@ protocol EntriesProvider {
     var shouldShowMore: Bool { get }
     
     var onEntriesUpdated: () -> () { get set }
+    
+}
+
+extension EntriesProvider {
+    
+    // TODO: This is inefficient
+    func shownEntries() -> [EntryViewModel] {
+        if settings[.filterNSFWContent] ?? false {
+            return entries.filter { $0.model.isSafeContent }
+        }
+        
+        return entries
+    }
+    
 }
 
 class TopEntriesViewModel: EntriesProvider {
-
-    
     var shouldShowMore: Bool {
         return true
     }
@@ -34,15 +48,19 @@ class TopEntriesViewModel: EntriesProvider {
     
     var onEntriesUpdated: () -> () = { }
     
+    let settings: Settings
+    
     init(withClient client: Client,
          favoriteService: FavoriteEntriesServiceProtocol,
-         onFavoriteUpdated: @escaping (EntryModel) -> ()) {
+         onFavoriteUpdated: @escaping (EntryModel) -> (),
+         settings: Settings) {
         self._favoriteService = favoriteService
         self.client = client
         self._onFavoriteUpdated = onFavoriteUpdated
+        self.settings = settings
     }
     
-    func reload(entry: EntryViewModel) {
+    func changeFavorite(entry: EntryViewModel) {
         guard let index = entries.firstIndex(where: {
             $0.model.url == entry.url
         }) else {
@@ -50,6 +68,9 @@ class TopEntriesViewModel: EntriesProvider {
         }
         
         entries[index] = EntryViewModel(withModel: entry.model)
+    }
+    
+    func reload() {
         onEntriesUpdated()
     }
     

@@ -9,8 +9,8 @@
 import Foundation
 
 public enum TabBarItem: CaseIterable {
-    case favorite
     case home
+    case favorite
     case settings
     
     var title: String {
@@ -25,7 +25,6 @@ public enum TabBarItem: CaseIterable {
     }
     
     var asset: Asset {
-        // TODO
         switch self {
         case .settings:
             return .gear
@@ -45,26 +44,46 @@ final class TabBarViewModel {
     
     fileprivate (set) var favoriteEntriesViewModel: FavoriteEntriesViewModel!
     
+    fileprivate (set) var settingsViewModel: SettingsViewModel!
+    
     fileprivate let _favoriteService: FavoriteEntriesServiceProtocol
     
-    init(favoriteService: FavoriteEntriesServiceProtocol) {
+    var defaultTab: TabBarItem {
+        return .home
+    }
+    
+    init(favoriteService: FavoriteEntriesServiceProtocol, settings: Settings) {
         _favoriteService = favoriteService
+        settingsViewModel = SettingsViewModel(
+            settings: Settings(storage: UserDefaults.standard),
+            onSettingsChanged: { [unowned self] in
+                self.reloadTables()
+        })
         self.favoriteEntriesViewModel = FavoriteEntriesViewModel(
             favoriteEntriesService: favoriteService,
             onFavoriteUpdated: { [unowned self] entry in
                 self.toggleFavorite(entry: entry)
-        })
+            },
+            settings: settings
+        )
         self.topEntriesViewModel = TopEntriesViewModel(
             withClient: RedditClient(),
             favoriteService: favoriteService,
             onFavoriteUpdated: { [unowned self] entry in
                 self.toggleFavorite(entry: entry)
-        })
+            },
+            settings: settings
+        )
     }
     
     func toggleFavorite(entry: EntryModel) {
         _favoriteService.toggleFavorite(entry: entry)
-        self.topEntriesViewModel.reload(entry: EntryViewModel(withModel: entry.updating(isFavorite: !entry.isFavorite)))
+        self.topEntriesViewModel.changeFavorite(entry: EntryViewModel(withModel: entry.updating(isFavorite: !entry.isFavorite)))
+        reloadTables()
+    }
+    
+    func reloadTables() {
+        self.topEntriesViewModel.reload()
         self.favoriteEntriesViewModel.reload()
     }
 

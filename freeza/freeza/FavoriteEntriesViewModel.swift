@@ -20,10 +20,14 @@ class FavoriteEntriesViewModel: EntriesProvider {
     
     var onEntriesUpdated: () -> () = { }
     
+    let settings: Settings
+    
     init(favoriteEntriesService: FavoriteEntriesServiceProtocol,
-         onFavoriteUpdated: @escaping (EntryModel) -> ()) {
+         onFavoriteUpdated: @escaping (EntryModel) -> (),
+         settings: Settings) {
         _favoriteEntriesService = favoriteEntriesService
         _onFavoriteUpdated = onFavoriteUpdated
+        self.settings = settings
     }
     
     var entries: [EntryViewModel] {

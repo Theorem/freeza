@@ -8,13 +8,44 @@
 
 import UIKit
 
+// Taken from https://stackoverflow.com/questions/57095330/ios-13-large-navigation-bar-appearance-tabbar-images
+extension UINavigationBar {
+    
+    class func setupAppearance() {
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = Palette.lightGrey.color
+            appearance.titleTextAttributes = textAttributes
+            appearance.largeTitleTextAttributes = textAttributes
+
+            self.appearance().standardAppearance = appearance
+            self.appearance().compactAppearance = appearance
+            self.appearance().scrollEdgeAppearance = appearance
+            self.appearance().tintColor = .black
+            self.appearance().prefersLargeTitles = true
+        } else {
+            self.appearance().isTranslucent = false
+            self.appearance().barTintColor = .darkGray
+            self.appearance().tintColor = .black
+            self.appearance().barStyle = .black
+
+            self.appearance().titleTextAttributes = textAttributes
+            if #available(iOS 11.0, *) {
+                self.appearance().largeTitleTextAttributes = textAttributes
+                self.appearance().prefersLargeTitles = true
+            }
+        }
+    }
+}
+
 final class TabBarController: UIViewController {
     
     fileprivate let _viewModel: TabBarViewModel
     
     fileprivate let _view: TabBarView
     
-    fileprivate let _tabBarControllers: [UIViewController]
+    fileprivate let _tabBarControllers: [UINavigationController]
     
     init(viewModel: TabBarViewModel) {
         _viewModel = viewModel
@@ -33,13 +64,18 @@ final class TabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        display(item: .home)
+        setStyle()
+        display(item: _viewModel.defaultTab)
         bindViewModel()
     }
     
 }
 
 fileprivate extension TabBarController {
+    
+    func setStyle() {
+        UINavigationBar.setupAppearance()
+    }
     
     func bindViewModel() {
         _view.tabBar.delegate = self
@@ -82,7 +118,7 @@ extension TabBarController: UITabBarDelegate {
     
 }
 
-private func createTabBarControllers(viewModel: TabBarViewModel) -> [UIViewController] {
+private func createTabBarControllers(viewModel: TabBarViewModel) -> [UINavigationController] {
     return viewModel.items.map { item in
         switch item {
         case .home:
@@ -91,15 +127,16 @@ private func createTabBarControllers(viewModel: TabBarViewModel) -> [UIViewContr
             return createTopViewController(viewModel: viewModel.favoriteEntriesViewModel)
             
         case .settings:
-            // TODO: Add settings component
-            return UIViewController()
+            let settingsViewModel: SettingsViewModel = viewModel.settingsViewModel
+            let navigationController = UINavigationController(rootViewController: SettingsViewController(viewModel: settingsViewModel))
+            return navigationController
         }
     }
 }
 
-func createTopViewController(viewModel: EntriesProvider) -> UIViewController {
+func createTopViewController(viewModel: EntriesProvider) -> UINavigationController {
     let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-    let navigationController = storyBoard.instantiateInitialViewController()!
+    let navigationController = storyBoard.instantiateInitialViewController() as! UINavigationController
     let topEntries = navigationController.childViewControllers.first as! EntriesViewController
     topEntries.viewModel = viewModel
     return navigationController

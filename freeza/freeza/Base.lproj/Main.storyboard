@@ -12,7 +12,7 @@
             <objects>
                 <tableViewController id="2Fm-PT-q0X" customClass="EntriesViewController" customModule="freeza" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" id="z3l-0C-udU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -71,6 +71,12 @@
                                                 <constraint firstAttribute="width" secondItem="TNt-Po-JYA" secondAttribute="height" multiplier="1:1" id="cbh-Re-AeE"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NSFW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuL-ph-gXC" customClass="PaddedLabel" customModule="freeza" customModuleProvider="target">
+                                            <rect key="frame" x="308" y="50" width="49" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="EIo-nk-vEK" firstAttribute="top" secondItem="qYg-we-90s" secondAttribute="topMargin" id="0lh-Lb-VDb"/>
@@ -83,9 +89,11 @@
                                         <constraint firstAttribute="bottom" secondItem="ZK0-mz-4hc" secondAttribute="bottom" constant="12" id="ORI-w6-Hv0"/>
                                         <constraint firstItem="ZK0-mz-4hc" firstAttribute="leading" secondItem="EIo-nk-vEK" secondAttribute="leading" constant="-12" id="UQR-D9-6WJ"/>
                                         <constraint firstItem="LXD-aI-wb0" firstAttribute="leading" secondItem="EIo-nk-vEK" secondAttribute="trailing" constant="8" id="arv-Hg-qLE"/>
+                                        <constraint firstItem="EuL-ph-gXC" firstAttribute="bottom" secondItem="TNt-Po-JYA" secondAttribute="bottom" id="biD-rH-QzE"/>
                                         <constraint firstItem="LXD-aI-wb0" firstAttribute="top" secondItem="EIo-nk-vEK" secondAttribute="top" id="lhI-Yc-1tN"/>
                                         <constraint firstItem="qNH-q5-Qjw" firstAttribute="leading" secondItem="LXD-aI-wb0" secondAttribute="trailing" constant="4" id="n6N-gM-wRl"/>
                                         <constraint firstItem="qNH-q5-Qjw" firstAttribute="trailing" secondItem="qYg-we-90s" secondAttribute="trailingMargin" id="p6l-01-fMF"/>
+                                        <constraint firstItem="TNt-Po-JYA" firstAttribute="leading" secondItem="EuL-ph-gXC" secondAttribute="trailing" constant="15" id="pzZ-HR-D1c"/>
                                         <constraint firstItem="EIo-nk-vEK" firstAttribute="leading" secondItem="qYg-we-90s" secondAttribute="leadingMargin" id="qEi-az-bAb"/>
                                         <constraint firstItem="ZK0-mz-4hc" firstAttribute="top" secondItem="EIo-nk-vEK" secondAttribute="bottom" constant="5" id="v85-0u-jdn"/>
                                     </constraints>
@@ -96,6 +104,7 @@
                                     <outlet property="commentsCountLabel" destination="qNH-q5-Qjw" id="7W9-dc-7qU"/>
                                     <outlet property="entryTitleLabel" destination="ZK0-mz-4hc" id="7dr-ch-tUe"/>
                                     <outlet property="heartImageView" destination="TNt-Po-JYA" id="t1Z-c5-ste"/>
+                                    <outlet property="safeContentLabel" destination="EuL-ph-gXC" id="d5s-2c-gfB"/>
                                     <outlet property="thumbnailImageView" destination="EIo-nk-vEK" id="zmz-4m-xTr"/>
                                 </connections>
                             </tableViewCell>
@@ -123,7 +132,7 @@
                         <viewControllerLayoutGuide type="bottom" id="JKD-gb-plb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DT3-yg-Xda">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X2P-7D-cVs">
@@ -156,7 +165,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DrB-fV-66k" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ahr-2X-kSx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
