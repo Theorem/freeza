@@ -14,4 +14,8 @@ extension Array {
         return self.compactMap { $0 as? T }
     }
     
+    subscript (safe index: Int) -> Element? {
+        return index < count ? self[index] : nil
+    }
+    
 }

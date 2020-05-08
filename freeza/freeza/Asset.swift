@@ -12,6 +12,8 @@ enum Asset: String, CaseIterable {
     case gear
     case favorite
     case home
+    case heart_empty
+    case heart_fill
     
     public var image: UIImage {
         guard let fetchedImage = UIImage(asset: self) else {

@@ -1,19 +1,19 @@
 import Foundation
 import UIKit
 
-class TopEntriesViewController: UITableViewController {
+class EntriesViewController: UITableViewController {
 
     static let showImageSegueIdentifier = "showImageSegue"
-    let viewModel = TopEntriesViewModel(withClient: RedditClient())
+    var viewModel: EntriesProvider!
     let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let errorLabel = UILabel()
     let tableFooterView = UIView()
     let moreButton = UIButton(type: .system)
     var urlToDisplay: URL?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bindViewModel()
         self.configureViews()
         self.loadEntries()
     }
@@ -31,7 +31,7 @@ class TopEntriesViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == TopEntriesViewController.showImageSegueIdentifier {
+        if segue.identifier == EntriesViewController.showImageSegueIdentifier {
             
             if let urlViewController = segue.destination as? URLViewController {
                 
@@ -81,11 +81,13 @@ class TopEntriesViewController: UITableViewController {
             self.tableFooterView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80)
             self.tableFooterView.addSubview(self.moreButton)
             
-            self.moreButton.frame = self.tableFooterView.bounds
-            self.moreButton.setTitle("More...", for: [])
-            self.moreButton.setTitle("Loading...", for: .disabled)
-            self.moreButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            self.moreButton.addTarget(self, action: #selector(TopEntriesViewController.moreButtonTapped), for: .touchUpInside)
+            if viewModel.shouldShowMore {
+                self.moreButton.frame = self.tableFooterView.bounds
+                self.moreButton.setTitle("More...", for: [])
+                self.moreButton.setTitle("Loading...", for: .disabled)
+                self.moreButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+                self.moreButton.addTarget(self, action: #selector(EntriesViewController.moreButtonTapped), for: .touchUpInside)
+            }
         }
         
         func configureToolbar() {
@@ -94,9 +96,9 @@ class TopEntriesViewController: UITableViewController {
 
             let errorItem = UIBarButtonItem(customView: self.errorLabel)
             let flexSpaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let retryItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(TopEntriesViewController.retryFromErrorToolbar))
+            let retryItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(EntriesViewController.retryFromErrorToolbar))
             let fixedSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-            let closeItem = UIBarButtonItem(image: UIImage(named: "close-button"), style: .plain, target: self, action: #selector(TopEntriesViewController.dismissErrorToolbar))
+            let closeItem = UIBarButtonItem(image: UIImage(named: "close-button"), style: .plain, target: self, action: #selector(EntriesViewController.dismissErrorToolbar))
             
             fixedSpaceItem.width = 12
             
@@ -121,15 +123,20 @@ class TopEntriesViewController: UITableViewController {
         self.tableView.tableFooterView = self.tableFooterView
         self.moreButton.isEnabled = true
         
-        if self.viewModel.hasError {
-
-            self.errorLabel.text = self.viewModel.errorMessage
+        if let errorMessage = self.viewModel.errorMessage {
+            self.errorLabel.text = errorMessage
             self.navigationController?.setToolbarHidden(false, animated: true)
+        }
+    }
+    
+    private func bindViewModel() {
+        viewModel.onEntriesUpdated = { [weak self] in
+            self?.tableView.reloadData()
         }
     }
 }
 
-extension TopEntriesViewController { // UITableViewDataSource
+extension EntriesViewController { // UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.entries.count
@@ -140,6 +147,7 @@ extension TopEntriesViewController { // UITableViewDataSource
         let entryTableViewCell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewCell.cellId, for: indexPath as IndexPath) as! EntryTableViewCell
         
         entryTableViewCell.entry = self.viewModel.entries[indexPath.row]
+        entryTableViewCell.delegate = self
         
         return entryTableViewCell
     }
@@ -154,10 +162,14 @@ extension TopEntriesViewController { // UITableViewDataSource
     }
 }
 
-extension TopEntriesViewController {
+extension EntriesViewController: EntryTableViewCellDelegate {
  
+    func tappedFavorite(entry: EntryViewModel) {
+        viewModel.toggleFavorite(entry: entry)
+    } 
+    
     func presentImage(withURL url: URL) {
         self.urlToDisplay = url
-        self.performSegue(withIdentifier: TopEntriesViewController.showImageSegueIdentifier, sender: self)
+        self.performSegue(withIdentifier: EntriesViewController.showImageSegueIdentifier, sender: self)
     }
 }
