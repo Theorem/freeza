@@ -1,6 +1,6 @@
 import Foundation
 
-struct EntryModel {
+struct EntryModel: Equatable {
 
     let title: String?
     let author: String?
@@ -8,8 +8,37 @@ struct EntryModel {
     let thumbnailURL: URL?
     let commentsCount: Int?
     let url: URL?
+    let isFavorite: Bool
     
-    init(withDictionary dictionary: [String: AnyObject]) {
+    var asDictionary: [String: AnyObject] {
+        return [
+            "title": title.map { $0 as AnyObject },
+            "author": author.map { $0 as AnyObject },
+            "created_utc": creation.map { $0.timeIntervalSince1970 as AnyObject },
+            "thumbnail": thumbnailURL.map { $0.absoluteString as AnyObject },
+            "num_comments": commentsCount.map { $0 as AnyObject },
+            "url": url.map { $0.absoluteString as AnyObject }
+            ]
+            .compactMapValues { $0 }
+    }
+    
+    init(title: String?,
+        author: String?,
+        creation: Date?,
+        thumbnailURL: URL?,
+        commentsCount: Int?,
+        url: URL?,
+        isFavorite: Bool) {
+        self.title = title
+        self.author = author
+        self.creation = creation
+        self.thumbnailURL = thumbnailURL
+        self.commentsCount = commentsCount
+        self.url = url
+        self.isFavorite = isFavorite
+    }
+    
+    init(withDictionary dictionary: [String: AnyObject], isFavorite: Bool) {
         
         func dateFromDictionary(withAttributeName attribute: String) -> Date? {
             
@@ -37,5 +66,25 @@ struct EntryModel {
         self.thumbnailURL = urlFromDictionary(withAttributeName: "thumbnail")
         self.commentsCount = dictionary["num_comments"] as? Int
         self.url = urlFromDictionary(withAttributeName: "url")
+        self.isFavorite = isFavorite
+    }
+    
+    func updating(isFavorite: Bool? = nil) -> EntryModel {
+        return EntryModel(
+            title: self.title,
+            author: self.author,
+            creation: self.creation,
+            thumbnailURL: self.thumbnailURL,
+            commentsCount: self.commentsCount,
+            url: self.url,
+            isFavorite: isFavorite ?? self.isFavorite
+        )
+    }
+    
+    public static func == (lhs: EntryModel, rhs: EntryModel) -> Bool {
+        guard let leftUrl = lhs.url, let rightUrl = rhs.url else {
+            return false
+        }
+        return leftUrl == rightUrl
     }
 }

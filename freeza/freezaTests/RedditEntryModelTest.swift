@@ -19,7 +19,7 @@ class RedditEntryModelTest: XCTestCase {
             "num_comments": commentsCount as AnyObject
         ]
         
-        let entryModel = EntryModel(withDictionary: dictionary)
+        let entryModel = EntryModel(withDictionary: dictionary, isFavorite: false)
         
         XCTAssertEqual(entryModel.title, title)
         XCTAssertEqual(entryModel.author, author)
@@ -31,7 +31,7 @@ class RedditEntryModelTest: XCTestCase {
     func testInitWithNils() {
         
         let dictionary = [String: AnyObject]()
-        let entryModel = EntryModel(withDictionary: dictionary)
+        let entryModel = EntryModel(withDictionary: dictionary, isFavorite: false)
         
         XCTAssertNil(entryModel.title)
         XCTAssertNil(entryModel.author)

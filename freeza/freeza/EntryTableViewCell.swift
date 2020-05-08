@@ -1,8 +1,8 @@
 import UIKit
 
-protocol EntryTableViewCellDelegate {
+protocol EntryTableViewCellDelegate: class {
     
-    func presentImage(withURL url: URL)
+    func tappedFavorite(entry: EntryViewModel)
 }
 
 class EntryTableViewCell: UITableViewCell {
@@ -23,6 +23,10 @@ class EntryTableViewCell: UITableViewCell {
     @IBOutlet private weak var ageLabel: UILabel!
     @IBOutlet private weak var entryTitleLabel: UILabel!
     
+    weak var delegate: EntryTableViewCellDelegate?
+    
+    @IBOutlet weak var heartImageView: UIImageView!
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.configureViews()
@@ -42,8 +46,22 @@ class EntryTableViewCell: UITableViewCell {
             self.commentsCountLabel.layer.cornerRadius = self.commentsCountLabel.bounds.size.height / 2
         }
         
+        func configureHeartImageView() {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedFavorite))
+            heartImageView.isUserInteractionEnabled = true
+            heartImageView.addGestureRecognizer(tapGesture)
+        }
+        
         configureThumbnailImageView()
         configureCommentsCountLabel()
+        configureHeartImageView()
+    }
+    
+    @objc private func tappedFavorite() {
+        guard let entry = entry else {
+            return
+        }
+        self.delegate?.tappedFavorite(entry: entry)
     }
     
     private func configureForEntry() {
@@ -58,6 +76,10 @@ class EntryTableViewCell: UITableViewCell {
         self.commentsCountLabel.text = entry.commentsCount
         self.ageLabel.text = entry.age
         self.entryTitleLabel.text = entry.title
+        
+        self.heartImageView.image = entry.isFavorite ?
+            Asset.heart_fill.image:
+            Asset.heart_empty.image
         
         entry.loadThumbnail { [weak self] in
             self?.thumbnailImageView.image = entry.thumbnail

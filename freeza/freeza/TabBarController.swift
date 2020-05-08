@@ -19,7 +19,7 @@ final class TabBarController: UIViewController {
     init(viewModel: TabBarViewModel) {
         _viewModel = viewModel
         _view = TabBarView(items: viewModel.items)
-        _tabBarControllers = createTabBarControllers(items: viewModel.items)
+        _tabBarControllers = createTabBarControllers(viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -60,6 +60,12 @@ fileprivate extension TabBarController {
             viewController: _tabBarControllers[index],
             intoView: _view.contentView
         )
+        
+        guard let controller = _tabBarControllers[index].childViewControllers[safe: 0] else {
+            return
+        }
+        
+        controller.navigationItem.title = item.title
     }
 }
 
@@ -76,16 +82,13 @@ extension TabBarController: UITabBarDelegate {
     
 }
 
-private func createTabBarControllers(items: [TabBarItem]) -> [UIViewController] {
-    return items.map { item in
+private func createTabBarControllers(viewModel: TabBarViewModel) -> [UIViewController] {
+    return viewModel.items.map { item in
         switch item {
         case .home:
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            return storyBoard.instantiateInitialViewController()!
-            
+            return createTopViewController(viewModel: viewModel.topEntriesViewModel)
         case .favorite:
-            // TODO: Add favorite component
-            return UIViewController()
+            return createTopViewController(viewModel: viewModel.favoriteEntriesViewModel)
             
         case .settings:
             // TODO: Add settings component
@@ -93,3 +96,12 @@ private func createTabBarControllers(items: [TabBarItem]) -> [UIViewController] 
         }
     }
 }
+
+func createTopViewController(viewModel: EntriesProvider) -> UIViewController {
+    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    let navigationController = storyBoard.instantiateInitialViewController()!
+    let topEntries = navigationController.childViewControllers.first as! EntriesViewController
+    topEntries.viewModel = viewModel
+    return navigationController
+}
+

@@ -6,14 +6,14 @@ class TopEntriesViewModelTests: XCTestCase {
     func testCompletion() {
         
         let client = RedditClient()
-        let topEntriesViewModel = TopEntriesViewModel(withClient: client)
+        let topEntriesViewModel = TopEntriesViewModel(withClient: client, favoriteService: FavoriteEntriesService(storage: FakeStorage()), onFavoriteUpdated: { _ in })
         
         let waitExpectation = expectation(description: "Wait for loadEntries to complete.")
         
         topEntriesViewModel.loadEntries {
             
             XCTAssertEqual(topEntriesViewModel.entries.count, 50)
-            XCTAssertFalse(topEntriesViewModel.hasError)
+            XCTAssertNil(topEntriesViewModel.errorMessage)
             
             topEntriesViewModel.entries.forEach { entryViewModel in
                 
@@ -27,15 +27,14 @@ class TopEntriesViewModelTests: XCTestCase {
     }
     
     func testError() {
-        
         let client = TestErrorClient()
-        let topEntriesViewModel = TopEntriesViewModel(withClient: client)
+        let topEntriesViewModel = TopEntriesViewModel(withClient: client, favoriteService: FavoriteEntriesService(storage: FakeStorage()), onFavoriteUpdated: { _ in })
         
         let waitExpectation = expectation(description: "Wait for loadEntries to complete.")
         
         topEntriesViewModel.loadEntries {
             
-            XCTAssertTrue(topEntriesViewModel.hasError)
+            XCTAssertNotNil(topEntriesViewModel.errorMessage)
             XCTAssertEqual(topEntriesViewModel.errorMessage, TestErrorClient.testErrorMessage)
             waitExpectation.fulfill()
         }

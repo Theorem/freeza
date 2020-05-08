@@ -29,15 +29,20 @@ class EntryViewModel {
     private let creation: Date?
     private let thumbnailURL: URL?
     private var thumbnailFetched = false
+    
+    var isFavorite: Bool {
+        return model.isFavorite
+    }
+    
+    let model: EntryModel
 
     init(withModel model: EntryModel) {
-        
+        self.model = model
         func markAsMissingRequiredField() {
             
             self.hasError = true
             self.errorMessage = "Missing required field"
         }
-
         self.title = model.title ?? "Untitled"
         self.author = model.author ?? "Anonymous"
         self.thumbnailURL = model.thumbnailURL

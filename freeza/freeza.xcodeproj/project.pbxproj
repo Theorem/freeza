@@ -17,7 +17,7 @@
 		31AA46E91D0B9618006C42BA /* NSDate+AgeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AA46E81D0B9618006C42BA /* NSDate+AgeFormatter.swift */; };
 		31AA46EE1D0B97EE006C42BA /* NSDate+AgeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AA46ED1D0B97EE006C42BA /* NSDate+AgeFormatterTests.swift */; };
 		31AA46F41D0C3F9E006C42BA /* TopEntriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AA46F31D0C3F9E006C42BA /* TopEntriesViewModelTests.swift */; };
-		31AA46F91D0C526D006C42BA /* TopEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AA46F81D0C526D006C42BA /* TopEntriesViewController.swift */; };
+		31AA46F91D0C526D006C42BA /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AA46F81D0C526D006C42BA /* EntriesViewController.swift */; };
 		31AA46FE1D0C54A5006C42BA /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AA46FD1D0C54A5006C42BA /* EntryTableViewCell.swift */; };
 		31CAC1471D0B412600E553AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CAC1461D0B412600E553AC /* AppDelegate.swift */; };
 		31CAC14C1D0B412600E553AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31CAC14A1D0B412600E553AC /* Main.storyboard */; };
@@ -35,6 +35,13 @@
 		BF0299612464A2D0006CB59D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299602464A2D0006CB59D /* UIView+Extensions.swift */; };
 		BF0299632464A305006CB59D /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299622464A305006CB59D /* Array+Extensions.swift */; };
 		BF0299642464A31F006CB59D /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299622464A305006CB59D /* Array+Extensions.swift */; };
+		BF0299672464AA94006CB59D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0299662464AA94006CB59D /* Storage.swift */; };
+		BF02996B2464AD2D006CB59D /* FavoriteEntriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02996A2464AD2D006CB59D /* FavoriteEntriesService.swift */; };
+		BF02996D2464AE3E006CB59D /* DocumentsDirectoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02996C2464AE3E006CB59D /* DocumentsDirectoryStorage.swift */; };
+		BF02996F2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02996E2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift */; };
+		BF28B4E42465B0C00017FBD7 /* EntryModel+Faked.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B4E32465B0C00017FBD7 /* EntryModel+Faked.swift */; };
+		BF28B4E62465B0EC0017FBD7 /* FakeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF28B4E52465B0EC0017FBD7 /* FakeStorage.swift */; };
+		BF72BB3B2464C9B900E5F089 /* FavoriteEntriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF72BB3A2464C9B900E5F089 /* FavoriteEntriesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +65,7 @@
 		31AA46E81D0B9618006C42BA /* NSDate+AgeFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+AgeFormatter.swift"; sourceTree = "<group>"; };
 		31AA46ED1D0B97EE006C42BA /* NSDate+AgeFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+AgeFormatterTests.swift"; sourceTree = "<group>"; };
 		31AA46F31D0C3F9E006C42BA /* TopEntriesViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopEntriesViewModelTests.swift; sourceTree = "<group>"; };
-		31AA46F81D0C526D006C42BA /* TopEntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopEntriesViewController.swift; sourceTree = "<group>"; };
+		31AA46F81D0C526D006C42BA /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		31AA46FD1D0C54A5006C42BA /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
 		31CAC1431D0B412600E553AC /* freeza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31CAC1461D0B412600E553AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +86,13 @@
 		BF02995D2464A216006CB59D /* TabBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTests.swift; sourceTree = "<group>"; };
 		BF0299602464A2D0006CB59D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		BF0299622464A305006CB59D /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		BF0299662464AA94006CB59D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		BF02996A2464AD2D006CB59D /* FavoriteEntriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEntriesService.swift; sourceTree = "<group>"; };
+		BF02996C2464AE3E006CB59D /* DocumentsDirectoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsDirectoryStorage.swift; sourceTree = "<group>"; };
+		BF02996E2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEntriesServiceTests.swift; sourceTree = "<group>"; };
+		BF28B4E32465B0C00017FBD7 /* EntryModel+Faked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntryModel+Faked.swift"; sourceTree = "<group>"; };
+		BF28B4E52465B0EC0017FBD7 /* FakeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeStorage.swift; sourceTree = "<group>"; };
+		BF72BB3A2464C9B900E5F089 /* FavoriteEntriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEntriesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +126,7 @@
 		31AA46DB1D0B4252006C42BA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				31AA46F81D0C526D006C42BA /* TopEntriesViewController.swift */,
+				31AA46F81D0C526D006C42BA /* EntriesViewController.swift */,
 				31E7F2A81D0CFAFC00C7CA70 /* URLViewController.swift */,
 			);
 			name = ViewControllers;
@@ -124,6 +138,7 @@
 				31AA46E41D0B8DA9006C42BA /* EntryViewModel.swift */,
 				31AA46E81D0B9618006C42BA /* NSDate+AgeFormatter.swift */,
 				31AA46E21D0B885C006C42BA /* TopEntriesViewModel.swift */,
+				BF72BB3A2464C9B900E5F089 /* FavoriteEntriesViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -143,6 +158,7 @@
 				31AA46ED1D0B97EE006C42BA /* NSDate+AgeFormatterTests.swift */,
 				31AA46F31D0C3F9E006C42BA /* TopEntriesViewModelTests.swift */,
 				BF02995D2464A216006CB59D /* TabBarTests.swift */,
+				BF02996E2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -195,6 +211,7 @@
 		31CAC1451D0B412600E553AC /* freeza */ = {
 			isa = PBXGroup;
 			children = (
+				BF0299652464AA88006CB59D /* Services */,
 				BF02995424649090006CB59D /* Extensions */,
 				BF029943246489F9006CB59D /* Components */,
 				31AA46D61D0B4183006C42BA /* Connectivity */,
@@ -210,6 +227,7 @@
 		31CAC15A1D0B412600E553AC /* freezaTests */ = {
 			isa = PBXGroup;
 			children = (
+				BF28B4E22465B0A70017FBD7 /* Mocks */,
 				BF02995F2464A2C0006CB59D /* Extensions */,
 				31AA46DD1D0B438C006C42BA /* Connectivity */,
 				31AA46EA1D0B9783006C42BA /* ViewModels */,
@@ -254,6 +272,41 @@
 				BF0299602464A2D0006CB59D /* UIView+Extensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		BF0299652464AA88006CB59D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BF0299692464AD18006CB59D /* FavoriteEntriesService */,
+				BF0299682464AAD5006CB59D /* Storage */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		BF0299682464AAD5006CB59D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				BF0299662464AA94006CB59D /* Storage.swift */,
+				BF02996C2464AE3E006CB59D /* DocumentsDirectoryStorage.swift */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
+		BF0299692464AD18006CB59D /* FavoriteEntriesService */ = {
+			isa = PBXGroup;
+			children = (
+				BF02996A2464AD2D006CB59D /* FavoriteEntriesService.swift */,
+			);
+			name = FavoriteEntriesService;
+			sourceTree = "<group>";
+		};
+		BF28B4E22465B0A70017FBD7 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				BF28B4E32465B0C00017FBD7 /* EntryModel+Faked.swift */,
+				BF28B4E52465B0EC0017FBD7 /* FakeStorage.swift */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,11 +415,14 @@
 				BF029956246490A0006CB59D /* UIView+Extensions.swift in Sources */,
 				BF0299632464A305006CB59D /* Array+Extensions.swift in Sources */,
 				BF02995C24649F11006CB59D /* UITabBar+Extensions.swift in Sources */,
+				BF0299672464AA94006CB59D /* Storage.swift in Sources */,
 				BF02995324649076006CB59D /* TabBarViewModel.swift in Sources */,
 				31AA46E31D0B885C006C42BA /* TopEntriesViewModel.swift in Sources */,
+				BF02996B2464AD2D006CB59D /* FavoriteEntriesService.swift in Sources */,
 				31AA46E71D0B8F23006C42BA /* Client.swift in Sources */,
 				BF02994524648A26006CB59D /* TabBarController.swift in Sources */,
 				31AA46DA1D0B4249006C42BA /* EntryModel.swift in Sources */,
+				BF02996D2464AE3E006CB59D /* DocumentsDirectoryStorage.swift in Sources */,
 				BF02995A2464933A006CB59D /* Asset.swift in Sources */,
 				31AA46E51D0B8DA9006C42BA /* EntryViewModel.swift in Sources */,
 				BF0299582464910C006CB59D /* UIViewController+Extensions.swift in Sources */,
@@ -374,7 +430,8 @@
 				31AA46E91D0B9618006C42BA /* NSDate+AgeFormatter.swift in Sources */,
 				31E7F2A91D0CFAFC00C7CA70 /* URLViewController.swift in Sources */,
 				31AA46FE1D0C54A5006C42BA /* EntryTableViewCell.swift in Sources */,
-				31AA46F91D0C526D006C42BA /* TopEntriesViewController.swift in Sources */,
+				31AA46F91D0C526D006C42BA /* EntriesViewController.swift in Sources */,
+				BF72BB3B2464C9B900E5F089 /* FavoriteEntriesViewModel.swift in Sources */,
 				BF02995124648B2B006CB59D /* TabBarView.swift in Sources */,
 				31AA46D81D0B419B006C42BA /* RedditClient.swift in Sources */,
 			);
@@ -386,10 +443,13 @@
 			files = (
 				BF0299612464A2D0006CB59D /* UIView+Extensions.swift in Sources */,
 				31AA46DF1D0B43A0006C42BA /* RedditEntryModelTest.swift in Sources */,
+				BF28B4E42465B0C00017FBD7 /* EntryModel+Faked.swift in Sources */,
 				31AA46F41D0C3F9E006C42BA /* TopEntriesViewModelTests.swift in Sources */,
+				BF28B4E62465B0EC0017FBD7 /* FakeStorage.swift in Sources */,
 				BF0299642464A31F006CB59D /* Array+Extensions.swift in Sources */,
 				31AA46EE1D0B97EE006C42BA /* NSDate+AgeFormatterTests.swift in Sources */,
 				BF02995E2464A216006CB59D /* TabBarTests.swift in Sources */,
+				BF02996F2464B9E4006CB59D /* FavoriteEntriesServiceTests.swift in Sources */,
 				31AA46E11D0B4D2C006C42BA /* ReditClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
